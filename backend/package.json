@@ -5,7 +5,9 @@
   "description": "",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "studio": "yarn prisma studio",
+    "migrate": "yarn prisma migrate dev"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^9.1.7",
