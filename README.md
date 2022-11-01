@@ -3,6 +3,7 @@
 ## backend
 
 * Prisma
+* Fastify
 
 -> Dev: <http://localhost:3333/api>
 -> DB Admin: <http://localhost:5555/>
@@ -31,6 +32,7 @@ yarn generate
 ## mobile
 
 * Expo
+* Native Base <https://docs.nativebase.io>
 
 ```bash
 cd into mobile
