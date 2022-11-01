@@ -28,7 +28,7 @@ async function main() {
   });
 
   app.get("/api/pools/count", async () => {
-    const count = await prisma.pool.count({});
+    const count = await prisma.pool.count();
 
     return { count };
   });

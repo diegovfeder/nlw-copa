@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "studio": "yarn prisma studio",
-    "migrate": "yarn prisma migrate dev"
+    "migrate": "yarn prisma migrate dev",
+    "generate": "yarn prisma generate"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^9.1.7",
