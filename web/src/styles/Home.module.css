@@ -13,12 +13,14 @@
 }
 
 .footer {
+  width: 100%;
   display: flex;
   flex: 1;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  background-color: #121214;
 }
 
 .footer a {

@@ -51,7 +51,7 @@ async function main() {
       },
     });
 
-    return reply.status(201).send({ title });
+    return reply.status(201).send({ code });
   });
 
   // Users
