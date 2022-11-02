@@ -1,6 +1,8 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import { PrismaClient } from "@prisma/client";
+import { z } from "zod";
+import ShortUniqueId from "short-unique-id";
 
 const prisma = new PrismaClient({
   log: ["query", "info", "warn"],
@@ -13,7 +15,6 @@ async function main() {
 
   await app.register(cors, {
     origin: true,
-    // origin: "www.example.com",
   });
 
   app.get("/api", async () => {
@@ -33,6 +34,26 @@ async function main() {
     return { count };
   });
 
+  app.post("/api/pools", async (request, reply) => {
+    const createPoolBody = z.object({
+      title: z.string(),
+    });
+
+    const { title } = createPoolBody.parse(request.body);
+
+    const generate = new ShortUniqueId({ length: 6 });
+    const code = String(generate()).toUpperCase();
+
+    await prisma.pool.create({
+      data: {
+        title,
+        code,
+      },
+    });
+
+    return reply.status(201).send({ title });
+  });
+
   // Users
   app.get("/api/users", async () => {
     const users = await prisma.user.findMany({});
@@ -44,26 +65,16 @@ async function main() {
     return { count };
   });
 
-  // app.get("/api/users/:id", async (request) => {
-  //   const { id } = request.params;
-  //   const user = await prisma.user.findUnique({
-  //     where: {
-  //       id: Number(id),
-  //     },
-  //   });
-  //   return { user };
-  // });
+  // Guesses
+  app.get("/api/guesses", async () => {
+    const guesses = await prisma.guess.findMany({});
+    return { guesses };
+  });
 
-  // app.post("/api/users", async (request) => {
-  //   const { name, email } = request.body;
-  //   const user = await prisma.user.create({
-  //     data: {
-  //       name,
-  //       email,
-  //     },
-  //   });
-  //   return { user };
-  // });
+  app.get("/api/guesses/count", async () => {
+    const count = await prisma.guess.count({});
+    return { count };
+  });
 
   await app.listen({
     port: 3333,

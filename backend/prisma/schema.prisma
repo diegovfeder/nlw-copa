@@ -17,8 +17,11 @@ datasource db {
 
 model Pool {
   id String @id @default(cuid())
+  ownerId String?
   title String
   code String @unique
+  participants Participant[]
+  owner User? @relation(fields: [ownerId], references: [id])
   createdAt DateTime @default(now())
 }
 
@@ -26,8 +29,38 @@ model User {
   id String @id @default(cuid())
   name String
   email String @unique
-  password String
+  avatarUrl String?
+  participatingAt Participant[]
+  ownPools Pool[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  // pools Pool[]
+}
+
+model Participant {
+  id String @id @default(cuid())
+  userId String
+  poolId String
+  guesses Guess[]
+  user User @relation(fields: [userId], references: [id])
+  pool Pool @relation(fields: [poolId], references: [id])
+  @@unique([userId, poolId])
+}
+
+model Game {
+  id String @id @default(cuid())
+  date DateTime 
+  firstTeamCountryCode String
+  secondTeamCountryCode String
+  guesses Guess[] 
+}
+
+model Guess {
+  id String @id @default(cuid())
+  gameId String
+  participantId String
+  firstTeamScore Int
+  secondTeamScore Int
+  game Game @relation(fields: [gameId], references: [id])
+  participant Participant @relation(fields: [participantId], references: [id])
+  createdAt DateTime @default(now())
 }
