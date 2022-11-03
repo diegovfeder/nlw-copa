@@ -1,81 +1,40 @@
-import { extendTheme } from "native-base";
+import { extendTheme } from 'native-base';
 
 export const THEME = extendTheme({
   colors: {
     gray: {
-      50: "#f7fafc",
-      100: "#edf2f7",
-      200: "#e2e8f0",
-      300: "#cbd5e0",
-      400: "#a0aec0",
-      500: "#718096",
-      600: "#4a5568",
-      700: "#2d3748",
-      800: "#1a202c",
-      900: "#171923",
+      950: '#09090A',
+      900: '#121214',
+      800: '#202024',
+      600: '#323238',
+      300: '#8D8D99',
+      200: '#C4C4CC',
     },
     green: {
-      50: "#f0fff4",
-      100: "#c6f6d5",
-      200: "#9ae6b4",
-      300: "#68d391",
-      400: "#48bb78",
-      500: "#38a169",
-      600: "#2f855a",
-      700: "#276749",
-      800: "#22543d",
-      900: "#1c4532",
+      500: '#047C3F'
     },
     yellow: {
-      50: "#fffff0",
-      100: "#fefcbf",
-      200: "#faf089",
-      300: "#f6e05e",
-      400: "#ecc94b",
-      500: "#d69e2e",
-      600: "#b7791f",
-      700: "#975a16",
-      800: "#744210",
-      900: "#5f370e",
+      500: '#F7DD43',
+      600: '#BBA317',
     },
     red: {
-      50: "#fff5f5",
-      100: "#fed7d7",
-      200: "#feb2b2",
-      300: "#fc8181",
-      400: "#f56565",
-      500: "#e53e3e",
-      600: "#c53030",
-      700: "#9b2c2c",
-      800: "#822727",
-      900: "#63171b",
+      500: '#DB4437',
     },
-    white: {
-      50: "#ffffff",
-      100: "#ffffff",
-      200: "#ffffff",
-      300: "#ffffff",
-      400: "#ffffff",
-      500: "#ffffff",
-      600: "#ffffff",
-      700: "#ffffff",
-      800: "#ffffff",
-      900: "#ffffff",
-    },
+    white: '#FFFFFF'
   },
   fonts: {
-    heading: "Roboto_700Bold",
-    body: "Roboto_400Regular",
-    medium: "Roboto_500Medium",
+    heading: 'Roboto_700Bold',
+    body: 'Roboto_400Regular',
+    medium: 'Roboto_500Medium'
   },
   fontSizes: {
-    xs: "12px",
-    sm: "14px",
-    md: "16px",
-    lg: "18px",
-    xl: "20px",
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 20,
+    xl: 24,
   },
   sizes: {
-    // 14: 56,
-  },
+    14: 56
+  }
 });
