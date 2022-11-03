@@ -18,6 +18,7 @@ export default function App() {
     Roboto_500Medium,
     Roboto_700Bold,
   });
+
   return (
     <NativeBaseProvider theme={THEME}>
       <AuthProvider>
