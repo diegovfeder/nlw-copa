@@ -1,4 +1,4 @@
-import { Heading, VStack } from "native-base";
+import { Text, Heading, VStack } from "native-base";
 
 import { Header } from "../components/Header";
 import Logo from "../assets/logo.svg";
@@ -7,9 +7,9 @@ import { Button } from "../components/Button";
 
 const New = () => {
   return (
-    <VStack p={"8"} flex={1} bgColor={"gray.900"}>
+    <VStack flex={1} bgColor={"gray.900"}>
       <Header title={"Criar novo Bolão"} />
-      <VStack alignItems={"center"}>
+      <VStack py={"8"} px={"5"} alignItems={"center"}>
         <Logo />
         <Heading
           fontFamily={"heading"}
@@ -20,8 +20,12 @@ const New = () => {
         >
           Crie seu próprio bolão da copa e compartilhe entre amigos!
         </Heading>
-        <Input mb={2} placeholder="Qual o nome do seu bolão?"  />
-        <Button title="Criar meu" />
+        <Input mb={2} placeholder="Qual o nome do seu bolão?" />
+        <Button title="CRIAR MEU BOLÃO" />
+        <Text color="gray.200" fontSize={"sm"} px={8} mt={4} textAlign="center">
+          Após criar seu bolão, você receberá um código único que poderá usar
+          para convidar outras pessoas.
+        </Text>
       </VStack>
     </VStack>
   );

@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import * as AuthSession from "expo-auth-session";
 import * as Google from "expo-auth-session/providers/google";
-import * as WebBrowser from "expo-web-browser";
 
 interface IUser {
   id: string;
@@ -57,6 +56,7 @@ export const AuthProvider = ({ children }) => {
 
   const signInWithGoogle = async (accessToken: string) => {
     console.log("signInWithGoogle", accessToken);
+    
   };
 
   useEffect(() => {
