@@ -8,7 +8,7 @@ import { Button } from "../components/Button";
 const New = () => {
   return (
     <VStack flex={1} bgColor={"gray.900"}>
-      <Header title={"Criar novo Bolão"} />
+      <Header title={"Criar novo bolão"} />
       <VStack py={"8"} px={"5"} alignItems={"center"}>
         <Logo />
         <Heading

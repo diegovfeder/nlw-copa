@@ -17,17 +17,17 @@ export async function authRoutes(app: FastifyInstance) {
 
   app.post("/api/users", async (request) => {
     const createUserBody = z.object({
-      accessToken: z.string(),
+      access_token: z.string(),
     });
 
-    const { accessToken } = createUserBody.parse(request.body);
+    const { access_token } = createUserBody.parse(request.body);
 
     const userResponse = await fetch(
       "https://www.googleapis.com/oauth2/v2/userinfo",
       {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );

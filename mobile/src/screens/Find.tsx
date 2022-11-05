@@ -7,7 +7,7 @@ import { Button } from "../components/Button";
 const Find = () => {
   return (
     <VStack flex={1} bgColor={"gray.900"}>
-      <Header title={"Criar novo Bolão"} showBackButton />
+      <Header title={"Encontrar bolão"} showBackButton />
       <VStack py={"8"} px={"5"} alignItems={"center"}>
         <Heading
           fontFamily={"heading"}

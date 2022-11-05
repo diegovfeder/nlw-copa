@@ -2,6 +2,8 @@ import { createContext, useState, useEffect } from "react";
 import * as AuthSession from "expo-auth-session";
 import * as Google from "expo-auth-session/providers/google";
 
+import { api } from "../services/api";
+
 interface IUser {
   id: string;
   name: string;
@@ -54,14 +56,29 @@ export const AuthProvider = ({ children }) => {
     console.log("signOut");
   };
 
-  const signInWithGoogle = async (accessToken: string) => {
-    console.log("signInWithGoogle", accessToken);
-    
+  const signInWithGoogle = async (access_token: string) => {
+    try {
+      setIsLoading(true);
+      const tokenResponse = await api.post("/users", {
+        access_token,
+      });
+      api.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${tokenResponse.data.token}`;
+
+      const userInfoResponse = await api.get("/me");
+      setuser(userInfoResponse.data.user);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
     if (res?.type === "success" && res?.authentication?.accessToken) {
-      signInWithGoogle(res.authentication.accessToken); 
+      signInWithGoogle(res.authentication.accessToken);
     }
   }, [res]);
 
