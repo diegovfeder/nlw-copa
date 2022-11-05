@@ -21,6 +21,10 @@ async function main() {
     secret: "nlw-copa-2022",
   });
 
+  app.get("/", async () => {
+    return "HELLO NLW COPA 2022";
+  });
+
   app.get("/api", async () => {
     return "Health check";
   });
