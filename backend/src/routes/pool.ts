@@ -6,17 +6,102 @@ import { prisma } from "../lib/prisma";
 import { authenticate } from "../plugins/authenticate";
 
 export async function poolRoutes(app: FastifyInstance) {
-  // app.get("/pools", async () => {
-  //   const pools = await prisma.pool.findMany({});
-
-  //   return { pools };
-  // });
-
   app.get("/pools/count", async () => {
     const count = await prisma.pool.count();
 
     return { count };
   });
+
+  app.get(
+    "/pools",
+    {
+      onRequest: [authenticate],
+    },
+    async (request) => {
+      const pools = await prisma.pool.findMany({
+        where: {
+          participants: {
+            some: {
+              userId: request.user.sub,
+            },
+          },
+        },
+        include: {
+          _count: {
+            select: {
+              participants: true,
+            },
+          },
+          participants: {
+            select: {
+              id: true,
+              user: {
+                select: {
+                  name: true,
+                  avatarUrl: true,
+                },
+              },
+            },
+            take: 4,
+          },
+          owner: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      });
+
+      return { pools };
+    }
+  );
+
+  app.get(
+    "/pools/:id",
+    {
+      onRequest: [authenticate],
+    },
+    async (request) => {
+      const getPoolParams = z.object({
+        id: z.string(),
+      });
+
+      const { id } = getPoolParams.parse(request.params);
+
+      const pool = await prisma.pool.findUnique({
+        where: {
+          id,
+        },
+        include: {
+          _count: {
+            select: {
+              participants: true,
+            },
+          },
+          participants: {
+            select: {
+              id: true,
+              user: {
+                select: {
+                  name: true,
+                  avatarUrl: true,
+                },
+              },
+            },
+          },
+          owner: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      });
+
+      return { pool };
+    }
+  );
 
   app.post("/pools", async (request, reply) => {
     const createPoolBody = z.object({
@@ -109,92 +194,6 @@ export async function poolRoutes(app: FastifyInstance) {
       return reply
         .status(201)
         .send({ message: "User successfully joined the pool!" });
-    }
-  );
-
-  // FIXME
-  app.get(
-    "/pools",
-    {
-      onRequest: [authenticate],
-    },
-    async (request) => {
-      const pools = await prisma.pool.findMany({
-        where: {
-          participants: {
-            some: {
-              userId: request.user.sub,
-            },
-          },
-        },
-        include: {
-          _count: {
-            select: {
-              participants: true,
-            },
-          },
-          participants: {
-            select: {
-              id: true,
-              user: {
-                select: {
-                  avatarUrl: true,
-                },
-              },
-            },
-            take: 4,
-          },
-          owner: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
-        },
-      });
-
-      return { pools };
-    }
-  );
-
-  // FIXME
-  app.get(
-    "/pools/:id",
-    {
-      onRequest: [authenticate],
-    },
-    async (request) => {
-      const getPoolParams = z.object({
-        id: z.string(),
-      });
-
-      const { id } = getPoolParams.parse(request.params);
-
-      const pool = await prisma.pool.findUnique({
-        where: {
-          id,
-        },
-        include: {
-          participants: {
-            select: {
-              id: true,
-              user: {
-                select: {
-                  avatarUrl: true,
-                },
-              },
-            },
-          },
-          owner: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
-        },
-      });
-
-      return { pool };
     }
   );
 }

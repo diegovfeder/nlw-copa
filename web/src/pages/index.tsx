@@ -21,7 +21,6 @@ export default function Home({ poolCount, guessCount, userCount }: HomeProps) {
 
   async function createPool(event: FormEvent) {
     event.preventDefault();
-    console.log("Create Pool");
 
     try {
       const response = await api.post("/pools", {

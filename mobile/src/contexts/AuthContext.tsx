@@ -27,8 +27,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [_req, res, promptAsync] = Google.useAuthRequest({
-    clientId:
-      "322330288864-kdrcg2lbf3mccsrdq8usg11evebi9evt.apps.googleusercontent.com",
+    clientId: process.env.CLIENT_ID,
     redirectUri: AuthSession.makeRedirectUri({
       useProxy: true,
     }),
@@ -72,7 +71,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log({ res });
     if (res?.type === "success" && !!res?.authentication?.accessToken) {
       signInWithGoogle(res.authentication.accessToken);
     }
