@@ -4,18 +4,18 @@ import { prisma } from "../lib/prisma";
 import { authenticate } from "../plugins/authenticate";
 
 export async function guessRoutes(app: FastifyInstance) {
-  app.get("/api/guesses", async () => {
+  app.get("/guesses", async () => {
     const guesses = await prisma.guess.findMany({});
     return { guesses };
   });
 
-  app.get("/api/guesses/count", async () => {
+  app.get("/guesses/count", async () => {
     const count = await prisma.guess.count({});
     return { count };
   });
 
   app.post(
-    "/api/pools/:poolId/games/:gameId/guesses",
+    "/pools/:poolId/games/:gameId/guesses",
     {
       onRequest: [authenticate],
     },

@@ -6,7 +6,7 @@ import { authenticate } from "../plugins/authenticate";
 
 export async function authRoutes(app: FastifyInstance) {
   app.post(
-    "/api/me",
+    "/me",
     {
       onRequest: [authenticate],
     },
@@ -15,7 +15,8 @@ export async function authRoutes(app: FastifyInstance) {
     }
   );
 
-  app.post("/api/users", async (request) => {
+  app.post("/auth", async (request) => {
+    console.log("auth", { body: request.body });
     const createUserBody = z.object({
       access_token: z.string(),
     });
@@ -69,11 +70,5 @@ export async function authRoutes(app: FastifyInstance) {
     );
 
     return { token };
-  });
-
-  app.get("/api/auth", async () => {
-    console.log("auth");
-
-    return { auth: false };
   });
 }

@@ -5,9 +5,9 @@ import useAuth from "../hooks/useAuth";
 import SignIn from "../screens/SignIn";
 import { AppRoutes } from "./app.routes";
 
-// FIXME: Routes, rnder signIn page
 export function Routes() {
-  const { signed } = useAuth();
+  const { signed, user } = useAuth();
+  console.log({ signed, user });
 
   return (
     <Box flex={1} bg="gray.900">

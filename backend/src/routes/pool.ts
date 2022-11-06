@@ -6,19 +6,19 @@ import { prisma } from "../lib/prisma";
 import { authenticate } from "../plugins/authenticate";
 
 export async function poolRoutes(app: FastifyInstance) {
-  // app.get("/api/pools", async () => {
+  // app.get("/pools", async () => {
   //   const pools = await prisma.pool.findMany({});
 
   //   return { pools };
   // });
 
-  app.get("/api/pools/count", async () => {
+  app.get("/pools/count", async () => {
     const count = await prisma.pool.count();
 
     return { count };
   });
 
-  app.post("/api/pools", async (request, reply) => {
+  app.post("/pools", async (request, reply) => {
     const createPoolBody = z.object({
       title: z.string(),
     });
@@ -56,7 +56,7 @@ export async function poolRoutes(app: FastifyInstance) {
   });
 
   app.post(
-    "/api/pools/join",
+    "/pools/join",
     { onRequest: [authenticate] },
     async (request, reply) => {
       const joinPoolBody = z.object({
@@ -114,7 +114,7 @@ export async function poolRoutes(app: FastifyInstance) {
 
   // FIXME
   app.get(
-    "/api/pools",
+    "/pools",
     {
       onRequest: [authenticate],
     },
@@ -159,7 +159,7 @@ export async function poolRoutes(app: FastifyInstance) {
 
   // FIXME
   app.get(
-    "/api/pools/:id",
+    "/pools/:id",
     {
       onRequest: [authenticate],
     },

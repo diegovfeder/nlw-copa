@@ -5,20 +5,20 @@ import { prisma } from "../lib/prisma";
 import { authenticate } from "../plugins/authenticate";
 
 export async function gameRoutes(app: FastifyInstance) {
-  app.get("/api/games", async () => {
+  app.get("/games", async () => {
     const games = await prisma.game.findMany({});
 
     return { games };
   });
 
-  app.get("/api/games/count", async () => {
+  app.get("/games/count", async () => {
     const count = await prisma.game.count();
 
     return { count };
   });
 
   app.get(
-    "/api/pools/:id/games",
+    "/pools/:id/games",
     {
       onRequest: [authenticate],
     },
