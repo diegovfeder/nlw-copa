@@ -24,11 +24,9 @@ yarn generate
 -> Dev: <http://localhost:3000/>
 
 ```bash
-cd into backend
+cd into web
 yarn
 yarn dev
-yarn migrate
-yarn generate
 ```
 
 ## mobile
