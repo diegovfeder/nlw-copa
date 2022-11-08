@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import jwt from "@fastify/jwt";
@@ -18,14 +20,10 @@ async function main() {
   });
 
   await app.register(jwt, {
-    secret: "nlw-copa-2022",
+    secret: process.env.SECRET || "secret",
   });
 
-  app.get("/", async () => {
-    return "HELLO NLW COPA 2022";
-  });
-
-  app.get("/api", async () => {
+  app.get("/api/*", async () => {
     return "HEALTH CHECK ❤️";
   });
 

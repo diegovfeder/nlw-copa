@@ -59,7 +59,7 @@ const New = () => {
           my={8}
           textAlign="center"
         >
-          Crie seu próprio bolão da copa e compartilhe entre amigos!
+          Crie o seu bolão da dos-bro e compartilhe entre amigos!
         </Heading>
         <Input
           mb={2}

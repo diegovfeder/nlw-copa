@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 
-import appPreviewImg from "../assets/app-nlw-copa-preview.png";
+import appPreviewImg from "../assets/app-bolao-dos-bro-preview.png";
 import logoImg from "../assets/logo.svg";
 import avatarsImg from "../assets/avatars.png";
 import iconCheckImg from "../assets/icon-check.svg";
@@ -46,10 +46,10 @@ export default function Home({ poolCount, guessCount, userCount }: HomeProps) {
       <div className="max-w-[1124px] mx-auto flex justify-between items-center h-screen gap-28">
         <HeadComponent />
         <main>
-          <Image src={logoImg} alt="NLW Copa" />
+          <Image src={logoImg} alt="BOLÃO Copa" />
 
-          <h1 className="mt-14 text-white text-4xl font-bold leading-tight">
-            Crie seu próprio bolão da copa e compartilhe entre amigos!
+          <h1 className="mt-14 text-white text-4xl font-bold leading-tight text-ellipsis ">
+            Crie o seu bolão da dos-bro e compartilhe entre amigos!
           </h1>
 
           <div className="mt-10 flex items-center gap-2">
@@ -57,7 +57,7 @@ export default function Home({ poolCount, guessCount, userCount }: HomeProps) {
 
             <strong className="text-gray-100 text-l">
               <span className="text-ignite-500">+{userCount}</span> pessoas já
-              estão usando o NLW Copa
+              estão usando o BOLÃO Copa
             </strong>
           </div>
 
@@ -106,7 +106,7 @@ export default function Home({ poolCount, guessCount, userCount }: HomeProps) {
 
         <Image
           src={appPreviewImg}
-          alt="Dois celulares exibindo uma prévia do app NLW Copa"
+          alt="Dois celulares exibindo uma prévia do app BOLÃO Copa"
         />
       </div>
       <FooterComponent />
