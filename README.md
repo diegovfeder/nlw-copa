@@ -1,7 +1,6 @@
 # nlw-copa
 
-![image](https://user-images.githubusercontent.com/63731464/200457879-f5bdcb7c-2e31-4f84-b44b-16929be69b7b.png)
-
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/63731464/200579651-8cffe765-142c-4994-93b8-1e9cb30407c8.png">
 
 ## backend
 
