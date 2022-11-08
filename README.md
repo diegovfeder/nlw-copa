@@ -1,5 +1,8 @@
 # nlw-copa
 
+![image](https://user-images.githubusercontent.com/63731464/200457879-f5bdcb7c-2e31-4f84-b44b-16929be69b7b.png)
+
+
 ## backend
 
 * Prisma
